@@ -681,7 +681,7 @@
 
 #ifndef BAUDRATE 
   #ifdef PROTOCOL_MAVLINK 
-    #define BAUDRATE 57600
+    #define BAUDRATE 115200
   #else
     #define BAUDRATE 115200
   #endif // PROTOCOL_MAVLINK
