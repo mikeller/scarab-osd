@@ -232,7 +232,6 @@ MwAngle[0]=(int16_t)(serialbufferfloat(4)*57.2958*10); // rad-->0.1deg
 
 void serialMAVreceive(uint8_t c)
 {
-debug[1]++;
   static uint8_t mav_payload_index; 
 if ((mav_payload_index) > SERIALBUFFERSIZE){
 //  mav_payload_index=100;
@@ -268,6 +267,7 @@ if ((mav_payload_index) > SERIALBUFFERSIZE){
       mw_mav.serial_checksum=0xFFFF;
       mav_payload_index=0;
       mav_state = MAV_HEADER_START;
+debug[0]++
     }
     else
     {
@@ -279,6 +279,7 @@ if ((mav_payload_index) > SERIALBUFFERSIZE){
     mw_mav.message_length = c;
     mav_state = MAV_HEADER_LEN;
     if ((mav_payload_index) > SERIALBUFFERSIZE){  // too much data so reset check
+debug[1]++
       mav_state = MAV_IDLE;
     }
   }
@@ -302,7 +303,7 @@ if ((mav_payload_index) > SERIALBUFFERSIZE){
     mav_state = MAV_HEADER_MSG;
   switch(mw_mav.message_cmd) {
   case MAVLINK_MSG_ID_HEARTBEAT:
-    debug[2]=c;
+    debug[2]=111;
     break;
   case MAVLINK_MSG_ID_VFR_HUD:
     debug[2]=c;

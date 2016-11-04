@@ -1243,7 +1243,7 @@ void serialMSPreceive(uint8_t loops)
 
   while(loopserial==1)
   {
-debug[0]++;
+
 #ifdef I2C_UB_SUPPORT
     // Read from the active port.
     c = focusPort->read();
@@ -1291,7 +1291,6 @@ debug[0]++;
         c_state = IDLE;
 #ifdef SERIALCHECK
         // Payload too large
-        debug[1]++;
 #endif
       }
       else
@@ -1319,7 +1318,6 @@ debug[0]++;
 #ifdef SERIALCHECK
         else {
           // Checksum error
-          debug[0]++;
         }
 #endif
         c_state = IDLE;
