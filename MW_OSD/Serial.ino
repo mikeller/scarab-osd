@@ -1243,6 +1243,7 @@ void serialMSPreceive(uint8_t loops)
 
   while(loopserial==1)
   {
+debug[0]++;
 #ifdef I2C_UB_SUPPORT
     // Read from the active port.
     c = focusPort->read();

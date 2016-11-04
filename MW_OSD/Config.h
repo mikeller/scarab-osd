@@ -32,7 +32,7 @@
 //#define LIBREPILOT                 // Uncomment this if you are using the latest LibrePilot MSP Module
 //#define TAULABS                   // Uncomment this if you are using the latest Tau Labs MSP Module
 //#define DRONIN                    // Uncomment this if you are using the latest DRONIN MSP Module
-#define CLEANFLIGHT               // Uncomment this if you are using latest CLEANFLIGHT version from repository (1.11.0 at time of this MWOSD release)
+//#define CLEANFLIGHT               // Uncomment this if you are using latest CLEANFLIGHT version from repository (1.11.0 at time of this MWOSD release)
 //#define BETAFLIGHT                // Uncomment this if you are using latest BETAFLIGHT version (3.0.0 at time of this MWOSD release)
 //#define FIXEDWING_BF              // Uncomment this if you are using fixed wing Baseflight 
 //#define FIXEDWING_BF_SERVO        // Uncomment this if you are using fixed wing Baseflight with additional SERVO adjustment menu.
@@ -40,7 +40,7 @@
 //#define NAZA                      // Uncomment this if you are using NAZA flight controller
 //#define iNAV                      // Uncomment this if you are using latest iNAV version from repository (1.01 at time of this MWOSD release)
 //#define KISS                      // Uncomment this if you are using KISS FC
-//#define APM                       // Uncomment this if you are using APM MAVLINK 1.0 compatible FC (Requires testing)
+#define APM                       // Uncomment this if you are using APM MAVLINK 1.0 compatible FC (Requires testing)
 //#define PIXHAWK                   // Uncomment this if you are using PIXHAWK MAVLINK 1.0 compatible FC
 //#define SKYTRACK                  // Under development
 //#define GPSOSD_UBLOX              // Uncomment this if you are using a UBLOX GPS module for a GPS based OSD
@@ -195,7 +195,7 @@
 /********************       Display Settings         ************************/
 #define MAXSTALLDETECT              // Enable to attempt to detect MAX chip stall from bad power. Attempts to restart.
 #define AUTOCAM                     // Disable if no screen display. Enables autodetect Camera type PAL/NTSC. Overrides GUI/OSD settings.
-#define USE_VSYNC                   // Disable if no screen display. Removes sparklies as updates screen during blanking time period. 
+//#define USE_VSYNC                   // Disable if no screen display. Removes sparklies as updates screen during blanking time period. 
 #define DECIMAL '.'                 // Decimal point character, change to what suits you best (.) (,)
 //#define SHIFTDOWN                 // Select if your monitor cannot display top line fully. It shifts top 3 lines down. Not suitable for all layouts
 //#define ALT_CENTER                // Enable alternative center crosshair

@@ -90,10 +90,10 @@ void mavlink_msg_request_data_stream_send(uint8_t MAVStreams, uint16_t MAVRates)
   mav_serialize8(99);
   mav_serialize8(MAVLINK_MSG_ID_REQUEST_DATA_STREAM);  
   //body:
-  mav_serialize16(MAVRates); //MAVRates
   mav_serialize8(1);
   mav_serialize8(1);
   mav_serialize8(MAVStreams);
+  mav_serialize16(MAVRates); //MAVRates
   mav_serialize8(1);
   //tail:
   mav_tx_checksum_func(MAVLINK_MSG_ID_REQUEST_DATA_STREAM_MAGIC);
@@ -130,8 +130,8 @@ void serialMAVCheck(){
   uint8_t osd_mode=serialbufferint(0);
   switch(mw_mav.message_cmd) {
   case MAVLINK_MSG_ID_HEARTBEAT:
- debug[0]++;
- mode.armed      = (1<<0);
+debug[3]++;
+mode.armed      = (1<<0);
     mode.gpshome    = (1<<4);
     mode.gpshold    = (1<<5);
     mode.gpsmission = (1<<6);
@@ -159,7 +159,6 @@ void serialMAVCheck(){
 #endif //MAVLINKREQ
     break;
   case MAVLINK_MSG_ID_VFR_HUD:
-debug[1]++;
 GPS_speed=(int16_t)serialbufferfloat(4)*100;    // m/s-->cm/s 
     GPS_altitude=(int16_t)serialbufferfloat(8);     // m-->m
     if (GPS_fix_HOME == 0){
@@ -175,7 +174,6 @@ GPS_speed=(int16_t)serialbufferfloat(4)*100;    // m/s-->cm/s
     MwVario=(int16_t)serialbufferfloat(12)*100;     // m/s-->cm/s
     break;
   case MAVLINK_MSG_ID_ATTITUDE:
-debug[2]++;
 MwAngle[0]=(int16_t)(serialbufferfloat(4)*57.2958*10); // rad-->0.1deg
     MwAngle[1]=(int16_t)(serialbufferfloat(8)*57.2958*10); // rad-->0.1deg
     break;
@@ -203,7 +201,6 @@ MwAngle[0]=(int16_t)(serialbufferfloat(4)*57.2958*10); // rad-->0.1deg
     handleRawRC();
     break;
   case MAVLINK_MSG_ID_SYS_STATUS:
-debug[3]++;
     mode.stable = 2;
     mode.baro   = 4;
     mode.mag    = 8;
@@ -235,6 +232,7 @@ debug[3]++;
 
 void serialMAVreceive(uint8_t c)
 {
+debug[1]++;
   static uint8_t mav_payload_index; 
 if ((mav_payload_index) > SERIALBUFFERSIZE){
 //  mav_payload_index=100;
@@ -302,6 +300,23 @@ if ((mav_payload_index) > SERIALBUFFERSIZE){
   {
     mw_mav.message_cmd = c;
     mav_state = MAV_HEADER_MSG;
+  switch(mw_mav.message_cmd) {
+  case MAVLINK_MSG_ID_HEARTBEAT:
+    debug[2]=c;
+    break;
+  case MAVLINK_MSG_ID_VFR_HUD:
+    debug[2]=c;
+    break;
+  case MAVLINK_MSG_ID_ATTITUDE:
+    debug[2]=c;
+    break;
+  case MAVLINK_MSG_ID_GPS_RAW_INT:
+    debug[2]=c;
+    break;
+  case MAVLINK_MSG_ID_RC_CHANNELS_RAW:
+    debug[2]=c;
+    break;
+  }
   }
   else if (mav_state == MAV_HEADER_MSG)
   {
