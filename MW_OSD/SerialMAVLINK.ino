@@ -267,7 +267,7 @@ if ((mav_payload_index) > SERIALBUFFERSIZE){
       mw_mav.serial_checksum=0xFFFF;
       mav_payload_index=0;
       mav_state = MAV_HEADER_START;
-debug[0]++
+debug[0]++;
     }
     else
     {
@@ -279,7 +279,7 @@ debug[0]++
     mw_mav.message_length = c;
     mav_state = MAV_HEADER_LEN;
     if ((mav_payload_index) > SERIALBUFFERSIZE){  // too much data so reset check
-debug[1]++
+debug[1]++;
       mav_state = MAV_IDLE;
     }
   }
